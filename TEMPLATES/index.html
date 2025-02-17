@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial News Sentiment</title>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 1;
+      position: relative;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      filter: blur(1px);
+    }
+    .btn {
+      padding: 12px 24px;
+      background: rgba(147, 112, 219, 0.8);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.2em;
+      backdrop-filter: blur(5px);
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: rgba(122, 91, 182, 0.8);
+    }
+    .emoji {
+      position: absolute;
+      font-size: 24px;
+      animation: fall linear infinite;
+      user-select: none;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Financial News Sentiment </h1>
+    <a href="/predict"><button class="btn">Know Sentiment </button></a>
+  </div>
+
+  <script>
+    const emojis = ["💰", "💵", "💳", "📈", "📉", "💹", "💱", "🏦", "💲", "💸"];
+    const numEmojis = 30;
+
+    function createEmoji() {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = `${Math.random() * 100}vw`;
+      emoji.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      document.body.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 5000);
+    }
+
+    for (let i = 0; i < numEmojis; i++) {
+      setTimeout(createEmoji, Math.random() * 2000);
+    }
+
+    setInterval(createEmoji, 1000);
+  </script>
+</body>
+</html>
